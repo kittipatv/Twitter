@@ -8,18 +8,18 @@
 
 #import "TweetsViewController.h"
 
+#include "ComposeViewController.h"
 #import "Tweet.h"
 #import "TweetCell.h"
 #import "TwitterClient.h"
 #import "User.h"
 
-@interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (nonatomic, strong) TweetCell *prototypeTweetCell;
 @property (nonatomic, strong) UIRefreshControl *refresh;
-@property (nonatomic, strong) NSArray *tweets;
+@property (nonatomic, strong) NSMutableArray *tweets;
 
 @end
 
@@ -39,8 +39,6 @@ NSString * const kTweetCell = @"TweetCell";
     [self.tableView registerNib:[UINib nibWithNibName:kTweetCell bundle:nil] forCellReuseIdentifier:kTweetCell];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
-    self.prototypeTweetCell = [[TweetCell alloc] init];
-    
     self.refresh = [[UIRefreshControl alloc] init];
     [self.refresh addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refresh atIndex:0];
@@ -49,7 +47,7 @@ NSString * const kTweetCell = @"TweetCell";
 }
 
 - (void)onRefresh {
-    [Tweet homeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
+    [Tweet homeTimelineWithCompletion:^(NSMutableArray *tweets, NSError *error) {
         if (tweets) {
             self.tweets = tweets;
             [self.tableView reloadData];
@@ -66,6 +64,17 @@ NSString * const kTweetCell = @"TweetCell";
 
 - (void)onNew {
     NSLog(@"new tweet");
+    
+    ComposeViewController *composeVC = [[ComposeViewController alloc] init];
+    composeVC.delegate = self;
+    
+    [self.navigationController pushViewController:composeVC animated:YES];
+}
+
+- (void)composeViewController:(ComposeViewController *)composeViewController tweeted:(Tweet *)tweet {
+    [self.tweets insertObject:tweet atIndex:0];
+    [self.tableView reloadData];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -85,9 +94,6 @@ NSString * const kTweetCell = @"TweetCell";
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return UITableViewAutomaticDimension;
-    //[self.prototypeTweetCell fillWithTweet:self.tweets[indexPath.row]];
-    //CGSize size = [self.prototypeTweetCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    //return size.height + 1;
 }
 
 /*

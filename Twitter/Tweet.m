@@ -22,11 +22,9 @@
         self.user = [[User alloc] initWithDictionary:originalTweet[@"user"]];
         
         NSString *createdStr = originalTweet[@"created_at"];
-        NSLog(@"created time: %@", createdStr);
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"EEE MMM d HH:mm:ss Z y";
         self.createdAt = [formatter dateFromString:createdStr];
-        NSLog(@"parsed:  %@", self.createdAt);
         
         if (originalTweet != dictionary) {
             self.retweeter = [[User alloc] initWithDictionary:dictionary[@"user"]];
@@ -36,7 +34,7 @@
     return self;
 }
 
-+ (NSArray *)tweetsWithArray:(NSArray *)array {
++ (NSMutableArray *)tweetsWithArray:(NSArray *)array {
     NSMutableArray *tweets = [NSMutableArray array];
     
     for (NSDictionary *dictionary in array) {
@@ -46,8 +44,12 @@
     return tweets;
 }
 
-+ (void)homeTimelineWithCompletion:(void (^)(NSArray *tweets, NSError *error))completion {
++ (void)homeTimelineWithCompletion:(void (^)(NSMutableArray *tweets, NSError *error))completion {
     [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:completion];
+}
+
+- (void)save {
+    [[TwitterClient sharedInstance] createTweetWithText:self.text];
 }
 
 @end

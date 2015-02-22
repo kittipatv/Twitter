@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComposeViewController">
+            <connections>
+                <outlet property="nameLabel" destination="b4L-kU-ulg" id="Zde-25-gm8"/>
+                <outlet property="profileImage" destination="7mk-iB-X32" id="Pfq-CA-fXs"/>
+                <outlet property="screenNameLabel" destination="xwv-tc-rHc" id="qBK-I6-iUg"/>
+                <outlet property="textView" destination="XEr-Uf-LiN" id="eUz-1f-luL"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7mk-iB-X32">
+                    <rect key="frame" x="8" y="76" width="48" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="48" id="8Ll-hX-DPx"/>
+                        <constraint firstAttribute="height" constant="48" id="IGt-Bs-ZQ3"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kittipat Virochsiri" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4L-kU-ulg">
+                    <rect key="frame" x="64" y="78" width="112.5" height="17"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@kittipatv" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xwv-tc-rHc">
+                    <rect key="frame" x="64" y="102" width="63" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XEr-Uf-LiN">
+                    <rect key="frame" x="8" y="131" width="304" height="429"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="7mk-iB-X32" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="76" id="139-Su-0Qu"/>
+                <constraint firstItem="XEr-Uf-LiN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="3Ma-cr-kll"/>
+                <constraint firstItem="xwv-tc-rHc" firstAttribute="leading" secondItem="7mk-iB-X32" secondAttribute="trailing" constant="8" id="8Lq-F3-bgi"/>
+                <constraint firstItem="b4L-kU-ulg" firstAttribute="centerY" secondItem="7mk-iB-X32" secondAttribute="centerY" constant="-13.5" id="A81-9z-IaP"/>
+                <constraint firstItem="7mk-iB-X32" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="Tt5-0B-gYX"/>
+                <constraint firstItem="b4L-kU-ulg" firstAttribute="leading" secondItem="7mk-iB-X32" secondAttribute="trailing" constant="8" id="X20-ax-YIe"/>
+                <constraint firstItem="XEr-Uf-LiN" firstAttribute="top" secondItem="7mk-iB-X32" secondAttribute="bottom" constant="7" id="Z1C-vG-wTN"/>
+                <constraint firstAttribute="trailing" secondItem="XEr-Uf-LiN" secondAttribute="trailing" constant="8" id="dJX-c4-7hc"/>
+                <constraint firstAttribute="bottom" secondItem="XEr-Uf-LiN" secondAttribute="bottom" constant="8" id="hJb-YL-vhp"/>
+                <constraint firstItem="7mk-iB-X32" firstAttribute="centerY" secondItem="xwv-tc-rHc" secondAttribute="centerY" constant="-10.5" id="z01-T4-2gW"/>
+            </constraints>
+            <point key="canvasLocation" x="278" y="206"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

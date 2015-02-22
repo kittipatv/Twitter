@@ -18,8 +18,9 @@
 @property (nonatomic, strong) User *retweeter;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
+- (void)save;
 
-+ (NSArray *)tweetsWithArray:(NSArray *)array;
-+ (void)homeTimelineWithCompletion:(void (^)(NSArray *tweets, NSError *error))completion;
++ (NSMutableArray *)tweetsWithArray:(NSArray *)array;
++ (void)homeTimelineWithCompletion:(void (^)(NSMutableArray *tweets, NSError *error))completion;
 
 @end
