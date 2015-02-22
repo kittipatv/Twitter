@@ -12,6 +12,6 @@
 
 @interface TweetCell : UITableViewCell
 
-- (void)fillWithTweet:(Tweet *)tweet;
+@property (nonatomic, strong) Tweet *tweet;
 
 @end

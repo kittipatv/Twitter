@@ -16,13 +16,21 @@
     self = [super init];
     
     if (self) {
-        self.text = dictionary[@"text"];
-        self.user = [[User alloc] initWithDictionary:dictionary[@"user"]];
+        NSDictionary *originalTweet = dictionary[@"retweeted_status"] ?: dictionary;
         
-        NSString *createdStr = dictionary[@"created_at"];
+        self.text = originalTweet[@"text"];
+        self.user = [[User alloc] initWithDictionary:originalTweet[@"user"]];
+        
+        NSString *createdStr = originalTweet[@"created_at"];
+        NSLog(@"created time: %@", createdStr);
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"EEE MMM d HH:mm:ss Z Y";
+        formatter.dateFormat = @"EEE MMM d HH:mm:ss Z y";
         self.createdAt = [formatter dateFromString:createdStr];
+        NSLog(@"parsed:  %@", self.createdAt);
+        
+        if (originalTweet != dictionary) {
+            self.retweeter = [[User alloc] initWithDictionary:dictionary[@"user"]];
+        }
     }
     
     return self;

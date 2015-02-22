@@ -17,6 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (nonatomic, strong) TweetCell *prototypeTweetCell;
 @property (nonatomic, strong) UIRefreshControl *refresh;
 @property (nonatomic, strong) NSArray *tweets;
 
@@ -37,6 +38,8 @@ NSString * const kTweetCell = @"TweetCell";
     self.tableView.dataSource  = self;
     [self.tableView registerNib:[UINib nibWithNibName:kTweetCell bundle:nil] forCellReuseIdentifier:kTweetCell];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    self.prototypeTweetCell = [[TweetCell alloc] init];
     
     self.refresh = [[UIRefreshControl alloc] init];
     [self.refresh addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
@@ -76,8 +79,15 @@ NSString * const kTweetCell = @"TweetCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TweetCell *cell = (TweetCell *)[self.tableView dequeueReusableCellWithIdentifier:kTweetCell];
-    [cell fillWithTweet:self.tweets[indexPath.row]];
+    cell.tweet = self.tweets[indexPath.row];
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
+    //[self.prototypeTweetCell fillWithTweet:self.tweets[indexPath.row]];
+    //CGSize size = [self.prototypeTweetCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    //return size.height + 1;
 }
 
 /*
