@@ -38,7 +38,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XEr-Uf-LiN">
-                    <rect key="frame" x="8" y="131" width="304" height="429"/>
+                    <rect key="frame" x="0.0" y="127" width="320" height="441"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -48,14 +48,14 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="7mk-iB-X32" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="76" id="139-Su-0Qu"/>
-                <constraint firstItem="XEr-Uf-LiN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="3Ma-cr-kll"/>
+                <constraint firstItem="XEr-Uf-LiN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3Ma-cr-kll"/>
                 <constraint firstItem="xwv-tc-rHc" firstAttribute="leading" secondItem="7mk-iB-X32" secondAttribute="trailing" constant="8" id="8Lq-F3-bgi"/>
                 <constraint firstItem="b4L-kU-ulg" firstAttribute="centerY" secondItem="7mk-iB-X32" secondAttribute="centerY" constant="-13.5" id="A81-9z-IaP"/>
                 <constraint firstItem="7mk-iB-X32" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="Tt5-0B-gYX"/>
                 <constraint firstItem="b4L-kU-ulg" firstAttribute="leading" secondItem="7mk-iB-X32" secondAttribute="trailing" constant="8" id="X20-ax-YIe"/>
-                <constraint firstItem="XEr-Uf-LiN" firstAttribute="top" secondItem="7mk-iB-X32" secondAttribute="bottom" constant="7" id="Z1C-vG-wTN"/>
-                <constraint firstAttribute="trailing" secondItem="XEr-Uf-LiN" secondAttribute="trailing" constant="8" id="dJX-c4-7hc"/>
-                <constraint firstAttribute="bottom" secondItem="XEr-Uf-LiN" secondAttribute="bottom" constant="8" id="hJb-YL-vhp"/>
+                <constraint firstItem="XEr-Uf-LiN" firstAttribute="top" secondItem="7mk-iB-X32" secondAttribute="bottom" constant="3" id="Z1C-vG-wTN"/>
+                <constraint firstAttribute="trailing" secondItem="XEr-Uf-LiN" secondAttribute="trailing" id="dJX-c4-7hc"/>
+                <constraint firstAttribute="bottom" secondItem="XEr-Uf-LiN" secondAttribute="bottom" id="hJb-YL-vhp"/>
                 <constraint firstItem="7mk-iB-X32" firstAttribute="centerY" secondItem="xwv-tc-rHc" secondAttribute="centerY" constant="-10.5" id="z01-T4-2gW"/>
             </constraints>
             <point key="canvasLocation" x="278" y="206"/>
