@@ -22,4 +22,6 @@
 
 @property (nonatomic, weak) id<ComposeViewControllerDelegate> delegate;
 
+- (id)initWithReplyToTweet:(Tweet *)tweet;
+
 @end

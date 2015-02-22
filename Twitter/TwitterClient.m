@@ -79,14 +79,41 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
     }];
 }
 
-- (void)createTweetWithText:(NSString *)text {
-    NSDictionary *params = @{@"status": text};
-    [self POST:@"1.1/statuses/update.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        Tweet *tweet = [[Tweet alloc] initWithDictionary:responseObject];
-        NSLog(@"tweeted: %@", tweet);
+- (void)POST:(NSString *)URLString parameters:(NSDictionary *)params completionWithTweetOrError:(void (^)(Tweet *tweet, NSError *error))completion {
+    [self POST:URLString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (completion ) {
+            completion([[Tweet alloc] initWithDictionary:responseObject], nil);
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Failed tweeting");
+        if (completion) {
+            completion(nil, error);
+        }
     }];
+}
+
+- (NSDictionary *)parametersWithID:(NSInteger)ID {
+    return @{@"id": [NSNumber numberWithInteger:ID]};
+}
+
+- (void)createTweetWithText:(NSString *)text completion:(void (^)(Tweet *tweet, NSError *error))completion {
+    [self POST:@"1.1/statuses/update.json" parameters:@{@"status": text} completionWithTweetOrError:completion];
+}
+
+- (void)createTweetWithText:(NSString *)text inReplyTo:(Tweet *)tweet completion:(void (^)(Tweet *tweet, NSError *error))completion {
+    NSDictionary *parameters =
+    @{
+      @"status": text,
+      @"in_reply_to_status_id": [NSString stringWithFormat:@"%ld", tweet.tweetID]
+    };
+    [self POST:@"1.1/statuses/update.json" parameters:parameters completionWithTweetOrError:completion];
+}
+
+- (void)favoriteTweet:(Tweet *)tweet completion:(void (^)(Tweet *tweet, NSError *error))completion {
+    [self POST:@"1.1/favorites/create.json" parameters:[self parametersWithID:tweet.tweetID] completionWithTweetOrError:completion];
+}
+
+- (void)unfavoriteTweet:(Tweet *)tweet completion:(void (^)(Tweet *tweet, NSError *error))completion {
+    [self POST:@"1.1/favorites/destroy.json" parameters:[self parametersWithID:tweet.tweetID] completionWithTweetOrError:completion];
 }
 
 @end

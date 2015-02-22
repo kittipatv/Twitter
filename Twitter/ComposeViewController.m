@@ -21,10 +21,21 @@
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 
 @property (nonatomic, strong) UILabel *remainingCharacterLabel;
+@property (nonatomic, strong) Tweet *replyToTweet;
 
 @end
 
 @implementation ComposeViewController
+
+- (id)initWithReplyToTweet:(Tweet *)tweet {
+    self = [super init];
+    
+    if (self) {
+        self.replyToTweet = tweet;
+    }
+    
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,12 +46,16 @@
     [self.profileImage setImageWithURL:[NSURL URLWithString:user.profileImageURL]];
     self.nameLabel.text = user.name;
     self.screenNameLabel.text = [NSString stringWithFormat:@"@%@", user.screenName];
-    self.textView.text = @"";
     self.textView.delegate = self;
     [self.textView becomeFirstResponder];
+    if (self.replyToTweet) {
+        self.textView.text = [NSString stringWithFormat:@"@%@ ", self.replyToTweet.user.screenName];
+    } else {
+        self.textView.text = @"";
+    }
     
     self.remainingCharacterLabel = [[UILabel alloc] init];
-    self.remainingCharacterLabel.text = @"140";
+    [self setRemainingCharacterCount];
     [self.remainingCharacterLabel sizeToFit];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(onCancel)];
@@ -54,11 +69,13 @@
     if (self.textView.text.length == 0 || self.textView.text.length > 140) {
         return;
     }
-    Tweet *tweet = [[Tweet alloc] init];
-    tweet.text = self.textView.text;
-    tweet.user = [User currentUser];
-    tweet.createdAt = [NSDate date];
-    [tweet save];
+    
+    Tweet *tweet = nil;
+    if (self.replyToTweet) {
+        tweet = [self.replyToTweet replyWithText:self.textView.text];
+    } else {
+        tweet = [Tweet tweetWithText:self.textView.text];
+    }
     
     [self.delegate composeViewController:self tweeted:tweet];
     
@@ -72,7 +89,11 @@
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
-    NSInteger remainingCharacters = 140 - textView.text.length;
+    [self setRemainingCharacterCount];
+}
+
+- (void)setRemainingCharacterCount {
+    NSInteger remainingCharacters = 140 - self.textView.text.length;
     self.remainingCharacterLabel.text = [NSString stringWithFormat:@"%ld", remainingCharacters];
 }
 

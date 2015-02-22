@@ -14,7 +14,7 @@
 #import "TwitterClient.h"
 #import "User.h"
 
-@interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate>
+@interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate, TweetCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -91,7 +91,25 @@ NSString * const kTweetCell = @"TweetCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TweetCell *cell = (TweetCell *)[self.tableView dequeueReusableCellWithIdentifier:kTweetCell];
     cell.tweet = self.tweets[indexPath.row];
+    cell.delegate = self;
     return cell;
+}
+
+- (void)updateTweetCell:(TweetCell *)tweetCell {
+    [self.tableView reloadRowsAtIndexPaths:@[[self.tableView indexPathForCell:tweetCell]] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (void)tweetCell:(TweetCell *)tweetCell favoritedDidChange:(BOOL)favorited {
+    [self updateTweetCell:tweetCell];
+}
+
+- (void)tweetCell:(TweetCell *)tweetCell retweetedDidChange:(BOOL)retweeted {
+    [self updateTweetCell:tweetCell];
+}
+
+- (void)tweetCell:(TweetCell *)tweetCell replyCreated:(Tweet *)tweet {
+    [self.tweets insertObject:tweet atIndex:0];
+    [self.tableView reloadData];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {

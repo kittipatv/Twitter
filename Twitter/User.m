@@ -29,7 +29,8 @@ NSString * const UserDidLogoutNotification = @"UserDidLogoutNotification";
         
         self.name = dictionary[@"name"];
         self.screenName = dictionary[@"screen_name"];
-        self.profileImageURL = [dictionary[@"profile_image_url"] stringByReplacingOccurrencesOfString:@"_normal" withString:@"_bigger"];
+        NSString *profileImageURL = [dictionary[@"default_profile_image"] boolValue] ? @"http://a0.twimg.com/sticky/default_profile_images/default_profile_6_normal.png" : dictionary[@"profile_image_url"];
+        self.profileImageURL = [profileImageURL stringByReplacingOccurrencesOfString:@"_normal" withString:@"_bigger"];
         self.tagline = dictionary[@"description"];
     }
     
