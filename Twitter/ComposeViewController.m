@@ -62,11 +62,13 @@
     
     [self.delegate composeViewController:self tweeted:tweet];
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.textView resignFirstResponder];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)onCancel {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.textView resignFirstResponder];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)textViewDidChange:(UITextView *)textView {

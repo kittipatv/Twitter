@@ -68,7 +68,9 @@ NSString * const kTweetCell = @"TweetCell";
     ComposeViewController *composeVC = [[ComposeViewController alloc] init];
     composeVC.delegate = self;
     
-    [self.navigationController pushViewController:composeVC animated:YES];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:composeVC];
+    
+    [self presentViewController:nvc animated:YES completion:nil];
 }
 
 - (void)composeViewController:(ComposeViewController *)composeViewController tweeted:(Tweet *)tweet {
