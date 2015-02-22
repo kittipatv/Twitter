@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  TweetCell.h
 //  Twitter
 //
 //  Created by Kittipat Virochsiri on 2/21/15.
@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+#import "Tweet.h"
 
+@interface TweetCell : UITableViewCell
+
+- (void)fillWithTweet:(Tweet *)tweet;
 
 @end
-
