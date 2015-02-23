@@ -65,8 +65,6 @@ NSString * const kTweetCell = @"TweetCell";
 }
 
 - (void)onNew {
-    NSLog(@"new tweet");
-    
     ComposeViewController *composeVC = [[ComposeViewController alloc] init];
     composeVC.delegate = self;
     
@@ -123,8 +121,7 @@ NSString * const kTweetCell = @"TweetCell";
 }
 
 - (void)tweetViewController:(TweetViewController *)tweetViewController tweetUpdated:(Tweet *)tweet {
-    // TODO update row
-    // [self.tableView reloadRowsAtIndexPaths:@[[self.tableView]] withRowAnimation:<#(UITableViewRowAnimation)#>];
+    [self.tableView reloadData];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {

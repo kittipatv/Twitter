@@ -33,7 +33,11 @@
     self.tweetLabel.text = tweet.text;
     self.nameLabel.text = tweet.user.name;
     self.screenNameLabel.text = [NSString stringWithFormat:@"@%@", tweet.user.screenName];
-    self.timestampLabel.text = [tweet.createdAt timeAgoSimple];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateStyle = NSDateFormatterShortStyle;
+    formatter.timeStyle = NSDateFormatterShortStyle;
+    self.timestampLabel.text = [formatter stringFromDate:tweet.createdAt];
     
     [self.profileImage setImageWithURL:[NSURL URLWithString:tweet.user.profileImageURL]];
     

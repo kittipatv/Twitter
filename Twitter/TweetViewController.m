@@ -78,16 +78,18 @@ NSString * const kCounterCell = @"CounterCell";
         CounterCell *cell = (CounterCell *)[self.tableView dequeueReusableCellWithIdentifier:kCounterCell];
         cell.retweetCount = self.tweet.retweetCount;
         cell.favoriteCount = self.tweet.favoriteCount;
-        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     } else if (indexPath.row == 2) {
         ControlCell *cell = (ControlCell *)[self.tableView dequeueReusableCellWithIdentifier:kControlCell];
         cell.tweet = self.tweet;
         cell.delegate = self;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     } else {
         BigTweetCell *cell = (BigTweetCell *)[self.tableView dequeueReusableCellWithIdentifier:kBigTweetCell];
         cell.tweet = self.tweet;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     return nil;
@@ -103,11 +105,17 @@ NSString * const kCounterCell = @"CounterCell";
 
 - (void)controlCell:(ControlCell *)controlCell favoriteDidChange:(Tweet *)tweet {
     [self updateRow:1];
+    if ([self.delegate respondsToSelector:@selector(tweetViewController:tweetUpdated:)]) {
+        [self.delegate tweetViewController:self tweetUpdated:tweet];
+    }
 }
 
 - (void)controlCell:(ControlCell *)controlCell retweetDidChange:(Tweet *)tweet {
     [self updateRow:0];
     [self updateRow:1];
+    if ([self.delegate respondsToSelector:@selector(tweetViewController:tweetUpdated:)]) {
+        [self.delegate tweetViewController:self tweetUpdated:tweet];
+    }
 }
 
 - (void)controlCell:(ControlCell *)controlCell replyCreated:(Tweet *)tweet {
