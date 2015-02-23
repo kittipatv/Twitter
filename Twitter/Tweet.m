@@ -39,12 +39,36 @@
         self.retweeted = [originalTweet[@"retweeted"] boolValue];
         self.retweetCount = [originalTweet[@"retweet_count"] integerValue];
         
+        if (self.retweeted) {
+            // TODO: Find my retweet, this only work when call the retweet endpoint
+            self.retweetID = [dictionary[@"id"] integerValue];
+        }
+        
         self.tweetID = [originalTweet[@"id"] integerValue];
         if (originalTweet[@"in_reply_to_status_id"] != [NSNull null]) {
             self.inReplyToTweetID = [originalTweet[@"in_reply_to_status_id"] integerValue];
         } else {
             self.inReplyToTweetID = 0;
         }
+    }
+    
+    return self;
+}
+
+- (id)initWithTweet:(Tweet *)tweet {
+    self = [super self];
+    
+    if (self) {
+        self.text = tweet.text;
+        self.user = tweet.user;
+        self.createdAt = tweet.createdAt;
+        self.retweeter = tweet.retweeter;
+        self.favorited = tweet.favorited;
+        self.favoriteCount = tweet.favoriteCount;
+        self.retweeted = tweet.retweeted;
+        self.retweetCount = tweet.retweetCount;
+        self.tweetID = tweet.tweetID;
+        self.inReplyToTweetID = tweet.inReplyToTweetID;
     }
     
     return self;
@@ -69,6 +93,36 @@
     tweet.inReplyToTweetID = self.tweetID;
     
     return tweet;
+}
+
+- (void)retweet {
+    self.retweeted = YES;
+    ++self.retweetCount;
+    
+    [[TwitterClient sharedInstance] retweet:self completion:^(Tweet *tweet, NSError *error) {
+        NSLog(@"tweetID: %ld, retweetID: %ld", tweet.tweetID, tweet.retweetID);
+        self.retweetID = tweet.retweetID;
+    }];
+    
+}
+
+- (BOOL)unretweet {
+    if (self.retweetID == 0) {
+        NSLog(@"Can't unretweet without ID");
+        return NO;
+    }
+
+    [[TwitterClient sharedInstance] unretweet:self completion:^(Tweet *tweet, NSError *error) {
+        if (tweet) {
+            self.retweetID = 0;
+        } else {
+            NSLog(@"error unretweeting");
+        }
+    }];
+    
+    self.retweeted = NO;
+    --self.retweetCount;
+    return YES;
 }
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array {

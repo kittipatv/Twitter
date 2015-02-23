@@ -29,10 +29,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *retweetButton;
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 
-
-@property (nonatomic, strong) UIImage *favoriteOnImage;
-@property (nonatomic, strong) UIImage *favoriteOffImage;
-
 @end
 
 @implementation TweetCell
@@ -55,12 +51,7 @@
     }
     
     [self updateFavoriteElements];
-    
-    if (tweet.retweetCount > 0) {
-        self.retweetCountLabel.text = [NSString stringWithFormat:@"%ld", tweet.retweetCount];
-    } else {
-        self.retweetCountLabel.text = @"";
-    }
+    [self updateRetweetElements];
 }
 
 - (void)showRetweetView {
@@ -75,10 +66,18 @@
     self.retweetViewTop.constant = 0;
 }
 
+- (void)updateRetweetElements {
+    self.retweetButton.selected = self.tweet.retweeted;
+    
+    if (self.tweet.retweetCount > 0) {
+        self.retweetCountLabel.text = [NSString stringWithFormat:@"%ld", self.tweet.retweetCount];
+    } else {
+        self.retweetCountLabel.text = @"";
+    }
+}
+
 - (void)updateFavoriteElements {
-    // self.favoriteButton.imageView.image = self.tweet.favorited ? self.favoriteOnImage : self.favoriteOffImage;
-    self.favoriteButton.imageView.image = self.tweet.favorited ? [UIImage imageNamed:@"favorite_on"] : [UIImage imageNamed:@"favorite"];
-    //[self.favoriteButton.imageView setNeedsDisplay];
+    self.favoriteButton.selected = self.tweet.favorited;
     
     if (self.tweet.favoriteCount > 0) {
         self.favoriteCountLabel.text = [NSString stringWithFormat:@"%ld", self.tweet.favoriteCount];
@@ -88,12 +87,9 @@
 }
 
 - (void)awakeFromNib {
-    self.favoriteOnImage = [UIImage imageNamed:@"favorite_on" inBundle:nil compatibleWithTraitCollection:nil];
-    self.favoriteOffImage = [UIImage imageNamed:@"favorite" inBundle:nil compatibleWithTraitCollection:nil];
 }
 
 - (IBAction)onReply:(id)sender {
-    NSLog(@"reply");
     ComposeViewController *composerVC = [[ComposeViewController alloc] initWithReplyToTweet:self.tweet];
     composerVC.delegate = self;
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:composerVC];
@@ -107,7 +103,12 @@
 }
 
 - (IBAction)onRetweet:(id)sender {
-    NSLog(@"retweet");
+    if (self.tweet.retweeted) {
+        [self.tweet unretweet];
+    } else {
+        [self.tweet retweet];
+    }
+    [self updateRetweetElements];
 }
 
 - (IBAction)onFavorite:(id)sender {
@@ -117,12 +118,6 @@
         [self.tweet favorite];
     }
     [self updateFavoriteElements];
-    if ([self.delegate respondsToSelector:@selector(tweetCell:favoritedDidChange:)]) {
-        // [self.delegate tweetCell:self favoritedDidChange:self.tweet.favorited];
-    }
-    if ([self.delegate respondsToSelector:@selector(tweetCell:favoriteCountDidChange:)]) {
-        // [self.delegate tweetCell:self favoriteCountDidChange:self.tweet.favoriteCount];
-    }
 }
 
 

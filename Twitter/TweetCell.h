@@ -15,10 +15,6 @@
 @protocol TweetCellDelegate <NSObject>
 
 @optional
-- (void)tweetCell:(TweetCell *)tweetCell favoritedDidChange:(BOOL)favorited;
-- (void)tweetCell:(TweetCell *)tweetCell favoriteCountDidChange:(NSInteger)favoriteCount;
-- (void)tweetCell:(TweetCell *)tweetCell retweetedDidChange:(BOOL)retweeted;
-- (void)tweetCell:(TweetCell *)tweetCell retweetCountDidChange:(NSInteger)retweetCount;
 - (void)tweetCell:(TweetCell *)tweetCell replyCreated:(Tweet *)tweet;
 
 @end

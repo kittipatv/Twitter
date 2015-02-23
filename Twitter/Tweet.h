@@ -13,6 +13,7 @@
 @interface Tweet : NSObject
 
 @property (nonatomic, assign) NSInteger tweetID;
+@property (nonatomic, assign) NSInteger retweetID;
 @property (nonatomic, assign) NSInteger inReplyToTweetID;
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) NSDate *createdAt;
@@ -24,9 +25,12 @@
 @property (nonatomic, assign) NSInteger retweetCount;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
+- (id)initWithTweet:(Tweet *)tweet;
 - (void)favorite;
 - (void)unfavorite;
 - (Tweet *)replyWithText:(NSString *)text;
+- (void)retweet;
+- (BOOL)unretweet;
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array;
 + (void)homeTimelineWithCompletion:(void (^)(NSMutableArray *tweets, NSError *error))completion;

@@ -93,6 +93,7 @@
                                 <state key="normal" image="retweet">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="selected" image="retweet_on"/>
                                 <connections>
                                     <action selector="onRetweet:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="L5k-VF-ZoY"/>
                                 </connections>
@@ -111,6 +112,7 @@
                                 <state key="normal" image="favorite">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="selected" image="favorite_on"/>
                                 <connections>
                                     <action selector="onFavorite:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="UAw-Af-lE9"/>
                                 </connections>
@@ -182,7 +184,9 @@
     </objects>
     <resources>
         <image name="favorite" width="16" height="16"/>
+        <image name="favorite_on" width="16" height="16"/>
         <image name="reply" width="16" height="16"/>
         <image name="retweet" width="19" height="16"/>
+        <image name="retweet_on" width="19" height="16"/>
     </resources>
 </document>

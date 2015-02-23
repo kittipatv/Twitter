@@ -72,7 +72,7 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
 
 - (void)homeTimelineWithParams:(NSDictionary *)params completion:(void (^)(NSMutableArray *tweets, NSError *error))completion {
     [self GET:@"1.1/statuses/home_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //NSLog(@"tweets: %@", responseObject);
+        NSLog(@"tweets: %@", responseObject);
         completion([Tweet tweetsWithArray:responseObject], nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         completion(nil, error);
@@ -108,12 +108,30 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
     [self POST:@"1.1/statuses/update.json" parameters:parameters completionWithTweetOrError:completion];
 }
 
+- (void)deleteTweet:(Tweet *)tweet completion:(void (^)(Tweet *tweet, NSError *error))completion {
+    [self deleteTweetWithID:tweet.tweetID completion:completion];
+}
+
+- (void)deleteTweetWithID:(NSInteger)tweetID completion:(void (^)(Tweet *tweet, NSError *error))completion {
+    NSString *postURL = [NSString stringWithFormat:@"1.1/statuses/destroy/%ld.json", tweetID];
+    [self POST:postURL parameters:nil completionWithTweetOrError:completion];
+}
+
 - (void)favoriteTweet:(Tweet *)tweet completion:(void (^)(Tweet *tweet, NSError *error))completion {
     [self POST:@"1.1/favorites/create.json" parameters:[self parametersWithID:tweet.tweetID] completionWithTweetOrError:completion];
 }
 
 - (void)unfavoriteTweet:(Tweet *)tweet completion:(void (^)(Tweet *tweet, NSError *error))completion {
     [self POST:@"1.1/favorites/destroy.json" parameters:[self parametersWithID:tweet.tweetID] completionWithTweetOrError:completion];
+}
+
+- (void)retweet:(Tweet *)tweet completion:(void (^)(Tweet *tweet, NSError *error))completion {
+    NSString *postURL = [NSString stringWithFormat:@"1.1/statuses/retweet/%ld.json", tweet.tweetID];
+    [self POST:postURL parameters:nil completionWithTweetOrError:completion];
+}
+
+- (void)unretweet:(Tweet *)tweet completion:(void (^)(Tweet *tweet, NSError *error))completion {
+    [self deleteTweetWithID:tweet.retweetID completion:completion];
 }
 
 @end

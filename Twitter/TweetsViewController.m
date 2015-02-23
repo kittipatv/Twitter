@@ -11,10 +11,11 @@
 #include "ComposeViewController.h"
 #import "Tweet.h"
 #import "TweetCell.h"
+#import "TweetViewController.h"
 #import "TwitterClient.h"
 #import "User.h"
 
-@interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate, TweetCellDelegate>
+@interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate, TweetCellDelegate, TweetViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -38,6 +39,7 @@ NSString * const kTweetCell = @"TweetCell";
     self.tableView.dataSource  = self;
     [self.tableView registerNib:[UINib nibWithNibName:kTweetCell bundle:nil] forCellReuseIdentifier:kTweetCell];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
     
     self.refresh = [[UIRefreshControl alloc] init];
     [self.refresh addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
@@ -92,24 +94,37 @@ NSString * const kTweetCell = @"TweetCell";
     TweetCell *cell = (TweetCell *)[self.tableView dequeueReusableCellWithIdentifier:kTweetCell];
     cell.tweet = self.tweets[indexPath.row];
     cell.delegate = self;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    TweetViewController *tweetVC = [[TweetViewController alloc] initWithTweet:self.tweets[indexPath.row]];
+    tweetVC.delegate = self;
+    [self.navigationController pushViewController:tweetVC animated:YES];
 }
 
 - (void)updateTweetCell:(TweetCell *)tweetCell {
     [self.tableView reloadRowsAtIndexPaths:@[[self.tableView indexPathForCell:tweetCell]] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-- (void)tweetCell:(TweetCell *)tweetCell favoritedDidChange:(BOOL)favorited {
-    [self updateTweetCell:tweetCell];
-}
-
-- (void)tweetCell:(TweetCell *)tweetCell retweetedDidChange:(BOOL)retweeted {
-    [self updateTweetCell:tweetCell];
+- (void)insertNewTweet:(Tweet *)tweet {
+    [self.tweets insertObject:tweet atIndex:0];
+    [self.tableView reloadData];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
 - (void)tweetCell:(TweetCell *)tweetCell replyCreated:(Tweet *)tweet {
-    [self.tweets insertObject:tweet atIndex:0];
-    [self.tableView reloadData];
+    [self insertNewTweet:tweet];
+}
+
+- (void)tweetViewController:(TweetViewController *)tweetViewController replyCreated:(Tweet *)tweet {
+    [self insertNewTweet:tweet];
+}
+
+- (void)tweetViewController:(TweetViewController *)tweetViewController tweetUpdated:(Tweet *)tweet {
+    // TODO update row
+    // [self.tableView reloadRowsAtIndexPaths:@[[self.tableView]] withRowAnimation:<#(UITableViewRowAnimation)#>];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
