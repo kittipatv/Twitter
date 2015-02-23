@@ -44,6 +44,9 @@
     User *user = [User currentUser];
     
     [self.profileImage setImageWithURL:[NSURL URLWithString:user.profileImageURL]];
+    self.profileImage.layer.cornerRadius = 4;
+    self.profileImage.clipsToBounds = YES;
+    
     self.nameLabel.text = user.name;
     self.screenNameLabel.text = [NSString stringWithFormat:@"@%@", user.screenName];
     self.textView.delegate = self;

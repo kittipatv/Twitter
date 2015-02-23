@@ -42,6 +42,8 @@
     self.timestampLabel.text = [tweet.createdAt timeAgoSimple];
     
     [self.profileImage setImageWithURL:[NSURL URLWithString:tweet.user.profileImageURL]];
+    self.profileImage.layer.cornerRadius = 4;
+    self.profileImage.clipsToBounds = YES;
     
     if (tweet.retweeter) {
         self.retweeterLabel.text = [NSString stringWithFormat:@"%@ retweeted", tweet.retweeter.name];
