@@ -21,6 +21,7 @@
 
 @property (nonatomic, strong) UIRefreshControl *refresh;
 @property (nonatomic, strong) NSMutableArray *tweets;
+@property (nonatomic, assign) BOOL reachedFeedBottom;
 
 @end
 
@@ -40,11 +41,11 @@ NSString * const kTweetCell = @"TweetCell";
     [self.tableView registerNib:[UINib nibWithNibName:kTweetCell bundle:nil] forCellReuseIdentifier:kTweetCell];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
-    
     self.refresh = [[UIRefreshControl alloc] init];
     [self.refresh addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refresh atIndex:0];
     
+    self.reachedFeedBottom = NO;
     [self onRefresh];
 }
 
@@ -52,9 +53,10 @@ NSString * const kTweetCell = @"TweetCell";
     [Tweet homeTimelineWithCompletion:^(NSMutableArray *tweets, NSError *error) {
         if (tweets) {
             self.tweets = tweets;
+            self.reachedFeedBottom = NO;
             [self.tableView reloadData];
         } else {
-            NSLog(@"failed to get tweets");
+            NSLog(@"failed to get tweets: %@", error);
         }
         [self.refresh endRefreshing];
     }];
@@ -93,7 +95,45 @@ NSString * const kTweetCell = @"TweetCell";
     cell.tweet = self.tweets[indexPath.row];
     cell.delegate = self;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    if (indexPath.row == self.tweets.count - 1) {
+        [self loadMoreTweets];
+    }
+    
     return cell;
+}
+
+- (void)loadMoreTweets {
+    static BOOL loading = NO;
+    
+    if (loading || self.reachedFeedBottom) {
+        NSLog(@"Loading new tweets in flight");
+        return;
+    }
+    loading = YES;
+    
+    UIView *tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+    UIActivityIndicatorView *loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [loadingView startAnimating];
+    loadingView.center = tableFooterView.center;
+    [tableFooterView addSubview:loadingView];
+    self.tableView.tableFooterView = tableFooterView;
+    
+    [Tweet homeTimelineWithMaxID:((Tweet *)self.tweets[self.tweets.count - 1]).tweetID completion:^(NSMutableArray *tweets, NSError *error) {
+        if (tweets) {
+            if (tweets.count > 0) {
+                [self.tweets addObjectsFromArray:tweets];
+                [self.tableView reloadData];
+            } else {
+                self.reachedFeedBottom = YES;
+            }
+        } else {
+            NSLog(@"failed to load more tweets: %@", error);
+        }
+        [loadingView stopAnimating];
+        [loadingView removeFromSuperview];
+        loading = NO;
+    }];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

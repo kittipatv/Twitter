@@ -139,6 +139,21 @@
     [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:completion];
 }
 
++ (void)homeTimelineWithMaxID:(NSInteger)maxTweetID completion:(void (^)(NSMutableArray *tweets, NSError *error))completion {
+    NSDictionary *parameters = @{@"max_id": [NSNumber numberWithInteger:maxTweetID]};
+    [[TwitterClient sharedInstance] homeTimelineWithParams:parameters completion:^(NSMutableArray *tweets, NSError *error) {
+        if (tweets) {
+            // max_id is inclusive, we don't want it
+            if (tweets.count > 0 && ((Tweet *)tweets[0]).tweetID == maxTweetID) {
+                [tweets removeObjectAtIndex:0];
+            }
+            completion(tweets, nil);
+        } else {
+            completion(nil, error);
+        }
+    }];
+}
+
 + (Tweet *)tweetWithText:(NSString *)text {
     [[TwitterClient sharedInstance] createTweetWithText:text completion:nil];
     return [Tweet tweetForCurrentUserWithText:text];

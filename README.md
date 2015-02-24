@@ -2,7 +2,7 @@
 
 This is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: `<Number of hours spent>` 1 + 9pm-4am
+Time spent: `17 hours`
 
 ### Features
 
@@ -24,8 +24,12 @@ Time spent: `<Number of hours spent>` 1 + 9pm-4am
 - [x] Retweeting and favoriting should increment the retweet and favorite count.
 - [x] User should be able to unretweet and unfavorite and should decrement the retweet and favorite count. (Unretweet doesn't work on retweeted tweets from server).
 - [x] Replies should be prefixed with the username and the reply_id should be set when posting the tweet,
-- [ ] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
+- [x] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
 
 ### Walkthrough
 
-![Video Walkthrough](...)
+![Video Walkthrough](twitter.gif)
+
+* [AFNetworking](https://github.com/AFNetworking/AFNetworking)
+* [BDBOAuth1Manager](https://github.com/bdbergeron/BDBOAuth1Manager)
+* [NSDate+TimeAgo](https://github.com/kevinlawler/NSDate-TimeAgo)

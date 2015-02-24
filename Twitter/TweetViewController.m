@@ -12,12 +12,14 @@
 #import "ComposeViewController.h"
 #import "ControlCell.h"
 #import "CounterCell.h"
+#import "TwitterClient.h"
 
 @interface TweetViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate, ControlCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) Tweet *tweet;
+@property (nonatomic, strong) NSMutableArray *inReplyToTweets;
 
 @end
 
@@ -28,9 +30,30 @@
     
     if (self) {
         self.tweet = tweet;
+        [self loadInReplyToTweet:tweet];
     }
     
     return self;
+}
+
+- (void)loadInReplyToTweet:(Tweet *)tweet {
+    if (self.inReplyToTweets.count > 10) {
+        // Don't want to go too deep
+        return;
+    }
+    if (tweet.inReplyToTweetID == 0) {
+        // End of chain
+        return;
+    }
+    [[TwitterClient sharedInstance] getTweetWithID:tweet.inReplyToTweetID completion:^(Tweet *tweet, NSError *error) {
+        if (tweet) {
+            [self.inReplyToTweets addObject:tweet];
+            [self.tableView reloadData];
+            [self loadInReplyToTweet:tweet];
+        } else {
+            NSLog(@"failed to load in-reply-to tweet: %@", error);
+        }
+    }];
 }
 
 NSString * const kBigTweetCell = @"BigTweetCell";
@@ -49,6 +72,8 @@ NSString * const kCounterCell = @"CounterCell";
     [self.tableView registerNib:[UINib nibWithNibName:kCounterCell bundle:nil] forCellReuseIdentifier:kCounterCell];
     [self.tableView registerNib:[UINib nibWithNibName:kControlCell bundle:nil] forCellReuseIdentifier:kControlCell];
     self.tableView.tableFooterView = [[UIView alloc] init];
+    
+    self.inReplyToTweets = [NSMutableArray array];
 }
 
 - (void)onReply {
@@ -70,7 +95,7 @@ NSString * const kCounterCell = @"CounterCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 3 + self.inReplyToTweets.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -88,11 +113,24 @@ NSString * const kCounterCell = @"CounterCell";
         return cell;
     } else {
         BigTweetCell *cell = (BigTweetCell *)[self.tableView dequeueReusableCellWithIdentifier:kBigTweetCell];
-        cell.tweet = self.tweet;
+        if (indexPath.row == 0) {
+            cell.tweet = self.tweet;
+        } else {
+            cell.tweet = self.inReplyToTweets[indexPath.row - 3];
+        }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row < 3) {
+        // Don't handle the first three rows
+        return;
+    }
+    TweetViewController *tweetVC = [[TweetViewController alloc] initWithTweet:self.inReplyToTweets[indexPath.row - 3]];
+    [self.navigationController pushViewController:tweetVC animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {

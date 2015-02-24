@@ -34,6 +34,7 @@
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array;
 + (void)homeTimelineWithCompletion:(void (^)(NSMutableArray *tweets, NSError *error))completion;
++ (void)homeTimelineWithMaxID:(NSInteger)maxTweetID completion:(void (^)(NSMutableArray *tweets, NSError *error))completion;
 + (Tweet *)tweetWithText:(NSString *)text;
 
 @end

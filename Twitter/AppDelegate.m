@@ -41,7 +41,9 @@
 }
 
 - (void)userDidLogout {
-    self.window.rootViewController = [[LoginViewController alloc] init];
+    [UIView transitionWithView:self.window duration:0.5 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
+        self.window.rootViewController = [[LoginViewController alloc] init];
+    } completion:nil];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

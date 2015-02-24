@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 
+#import "AppDelegate.h"
 #import "TweetsViewController.h"
 #import "TwitterClient.h"
 
@@ -32,7 +33,10 @@
         if (user) {
             NSLog(@"welcome, %@", user.name);
             UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] init]];
-            [self presentViewController:nvc animated:YES completion:nil];
+            AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            [UIView transitionWithView:appDelegate.window duration:0.3 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
+                appDelegate.window.rootViewController = nvc;
+            } completion:nil];
         } else {
             NSLog(@"no...");
         }

@@ -91,8 +91,24 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
     }];
 }
 
+- (void)GET:(NSString *)URLString parameters:(NSDictionary *)params completionWithTweetOrError:(void (^)(Tweet *tweet, NSError *error))completion {
+    [self GET:URLString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (completion ) {
+            completion([[Tweet alloc] initWithDictionary:responseObject], nil);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (completion) {
+            completion(nil, error);
+        }
+    }];
+}
+
 - (NSDictionary *)parametersWithID:(NSInteger)ID {
     return @{@"id": [NSNumber numberWithInteger:ID]};
+}
+
+- (void)getTweetWithID:(NSInteger)tweetID completion:(void (^)(Tweet *tweet, NSError *error))completion {
+    [self GET:@"1.1/statuses/show.json" parameters:[self parametersWithID:tweetID] completionWithTweetOrError:completion];
 }
 
 - (void)createTweetWithText:(NSString *)text completion:(void (^)(Tweet *tweet, NSError *error))completion {
