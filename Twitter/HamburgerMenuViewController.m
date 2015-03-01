@@ -15,6 +15,7 @@
 
 @property (nonatomic, assign) BOOL menuRevealed;
 @property (nonatomic, assign) CGFloat dragStartX;
+@property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
 
 @end
 
@@ -60,6 +61,37 @@ const CGFloat kMenuWidth = 260.0;
     // Dispose of any resources that can be recreated.
 }
 
+- (UITapGestureRecognizer *)tapRecognizer {
+    if (_tapRecognizer == nil) {
+        _tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onHideTapGesture)];
+    }
+    return _tapRecognizer;
+}
+
+- (void)onHideTapGesture {
+    [self hideMenu];
+}
+
+- (void)showMenu {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.contentView.frame = CGRectMake(kMenuWidth, 0, self.contentView.frame.size.width, self.contentView.frame.size.height);
+    } completion:^(BOOL finished) {
+        [self.contentView addGestureRecognizer:self.tapRecognizer];
+        self.contentViewController.view.userInteractionEnabled = NO;
+        self.menuRevealed = YES;
+    }];
+}
+
+- (void)hideMenu {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.contentView.frame = CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height);
+    } completion:^(BOOL finished) {
+        [self.contentView removeGestureRecognizer:self.tapRecognizer];
+        self.contentViewController.view.userInteractionEnabled = YES;
+        self.menuRevealed = NO;
+    }];
+}
+
 - (IBAction)onPanGesture:(UIPanGestureRecognizer *)sender {
     CGPoint translation = [sender translationInView:self.view];
     CGPoint velocity = [sender translationInView:self.view];
@@ -67,17 +99,16 @@ const CGFloat kMenuWidth = 260.0;
     if (sender.state == UIGestureRecognizerStateBegan) {
         self.dragStartX = self.contentView.frame.origin.x;
     } else if (sender.state == UIGestureRecognizerStateChanged) {
-        self.contentView.frame = CGRectMake(self.dragStartX + translation.x, 0, self.contentView.frame.size.width, self.contentView.frame.size.height);
+        CGFloat dragX = self.dragStartX + translation.x;
+        if (dragX >= 0 && dragX <= kMenuWidth) {
+            self.contentView.frame = CGRectMake(dragX, 0, self.contentView.frame.size.width, self.contentView.frame.size.height);
+        }
     } else if (sender.state == UIGestureRecognizerStateEnded) {
-        [UIView animateWithDuration:0.3 animations:^{
-            if (velocity.x > 0) {
-                self.contentView.frame = CGRectMake(kMenuWidth, 0, self.contentView.frame.size.width, self.contentView.frame.size.height);
-            } else {
-                self.contentView.frame = CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height);
-            }
-        } completion:^(BOOL finished) {
-            self.menuRevealed = velocity.x > 0;
-        }];
+        if (velocity.x > 0) {
+            [self showMenu];
+        } else {
+            [self hideMenu];
+        }
     }
 }
 
