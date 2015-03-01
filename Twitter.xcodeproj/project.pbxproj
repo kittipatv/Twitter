@@ -32,6 +32,8 @@
 		C87B159A1A9AB17A00C671D6 /* CounterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C87B15981A9AB17A00C671D6 /* CounterCell.xib */; };
 		C87B159E1A9AB54800C671D6 /* ControlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C87B159C1A9AB54800C671D6 /* ControlCell.m */; };
 		C87B159F1A9AB54800C671D6 /* ControlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C87B159D1A9AB54800C671D6 /* ControlCell.xib */; };
+		C87C62C41AA3B26900FDC90B /* HamburgerMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87C62C21AA3B26900FDC90B /* HamburgerMenuViewController.m */; };
+		C87C62C51AA3B26900FDC90B /* HamburgerMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C87C62C31AA3B26900FDC90B /* HamburgerMenuViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,9 @@
 		C87B159B1A9AB54800C671D6 /* ControlCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlCell.h; sourceTree = "<group>"; };
 		C87B159C1A9AB54800C671D6 /* ControlCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlCell.m; sourceTree = "<group>"; };
 		C87B159D1A9AB54800C671D6 /* ControlCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ControlCell.xib; sourceTree = "<group>"; };
+		C87C62C11AA3B26900FDC90B /* HamburgerMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HamburgerMenuViewController.h; sourceTree = "<group>"; };
+		C87C62C21AA3B26900FDC90B /* HamburgerMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HamburgerMenuViewController.m; sourceTree = "<group>"; };
+		C87C62C31AA3B26900FDC90B /* HamburgerMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HamburgerMenuViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +208,9 @@
 				C87B158C1A9AA31D00C671D6 /* TweetViewController.h */,
 				C87B158D1A9AA31D00C671D6 /* TweetViewController.m */,
 				C87B158E1A9AA31D00C671D6 /* TweetViewController.xib */,
+				C87C62C11AA3B26900FDC90B /* HamburgerMenuViewController.h */,
+				C87C62C21AA3B26900FDC90B /* HamburgerMenuViewController.m */,
+				C87C62C31AA3B26900FDC90B /* HamburgerMenuViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -335,6 +343,7 @@
 				C83DF5AE1A99AA8C00C98592 /* TweetCell.xib in Resources */,
 				C87B15951A9AA8FA00C671D6 /* BigTweetCell.xib in Resources */,
 				C87B159A1A9AB17A00C671D6 /* CounterCell.xib in Resources */,
+				C87C62C51AA3B26900FDC90B /* HamburgerMenuViewController.xib in Resources */,
 				C83DF57E1A99629300C98592 /* LaunchScreen.xib in Resources */,
 				C83DF57B1A99629300C98592 /* Images.xcassets in Resources */,
 				C83DF5981A99651500C98592 /* LoginViewController.xib in Resources */,
@@ -389,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C83DF5A01A996F0100C98592 /* User.m in Sources */,
+				C87C62C41AA3B26900FDC90B /* HamburgerMenuViewController.m in Sources */,
 				C83DF59C1A99661300C98592 /* TwitterClient.m in Sources */,
 				C83DF5731A99629300C98592 /* AppDelegate.m in Sources */,
 				C87B15941A9AA8FA00C671D6 /* BigTweetCell.m in Sources */,
