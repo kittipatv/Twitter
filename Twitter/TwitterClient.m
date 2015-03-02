@@ -72,7 +72,7 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
 
 - (void)homeTimelineWithParams:(NSDictionary *)params completion:(void (^)(NSMutableArray *tweets, NSError *error))completion {
     [self GET:@"1.1/statuses/home_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"tweets: %@", responseObject);
+        // NSLog(@"tweets: %@", responseObject);
         completion([Tweet tweetsWithArray:responseObject], nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         completion(nil, error);

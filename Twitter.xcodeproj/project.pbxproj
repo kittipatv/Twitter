@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		899520EA82BEDB3919F3578A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CB9EC9907700C45376417E5 /* libPods.a */; };
+		C814BC9F1AA3E6FA008A3C4F /* HomeTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C814BC9E1AA3E6FA008A3C4F /* HomeTimelineViewController.m */; };
 		C83DF5701A99629300C98592 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C83DF56F1A99629300C98592 /* main.m */; };
 		C83DF5731A99629300C98592 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C83DF5721A99629300C98592 /* AppDelegate.m */; };
 		C83DF57B1A99629300C98592 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C83DF57A1A99629300C98592 /* Images.xcassets */; };
@@ -50,6 +51,8 @@
 		42390904234CA3F6AC0D12B6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4782F42CA0F7C88863A1D66A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		8CB9EC9907700C45376417E5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C814BC9D1AA3E6FA008A3C4F /* HomeTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTimelineViewController.h; sourceTree = "<group>"; };
+		C814BC9E1AA3E6FA008A3C4F /* HomeTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTimelineViewController.m; sourceTree = "<group>"; };
 		C83DF56A1A99629300C98592 /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C83DF56E1A99629300C98592 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C83DF56F1A99629300C98592 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -211,6 +214,8 @@
 				C87C62C11AA3B26900FDC90B /* HamburgerMenuViewController.h */,
 				C87C62C21AA3B26900FDC90B /* HamburgerMenuViewController.m */,
 				C87C62C31AA3B26900FDC90B /* HamburgerMenuViewController.xib */,
+				C814BC9D1AA3E6FA008A3C4F /* HomeTimelineViewController.h */,
+				C814BC9E1AA3E6FA008A3C4F /* HomeTimelineViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -399,6 +404,7 @@
 			files = (
 				C83DF5A01A996F0100C98592 /* User.m in Sources */,
 				C87C62C41AA3B26900FDC90B /* HamburgerMenuViewController.m in Sources */,
+				C814BC9F1AA3E6FA008A3C4F /* HomeTimelineViewController.m in Sources */,
 				C83DF59C1A99661300C98592 /* TwitterClient.m in Sources */,
 				C83DF5731A99629300C98592 /* AppDelegate.m in Sources */,
 				C87B15941A9AA8FA00C671D6 /* BigTweetCell.m in Sources */,

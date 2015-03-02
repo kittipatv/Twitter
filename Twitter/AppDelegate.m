@@ -9,8 +9,8 @@
 #import "AppDelegate.h"
 
 #import "HamburgerMenuViewController.h"
+#import "HomeTimelineViewController.h"
 #import "LoginViewController.h"
-#import "TweetsViewController.h"
 #import "TwitterClient.h"
 #import "User.h"
 
@@ -30,7 +30,7 @@
     User *user = [User currentUser];
     if (user) {
         NSLog(@"Welcome, %@", user.name);
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] init]];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[HomeTimelineViewController alloc] init]];
         
         self.window.rootViewController = [[HamburgerMenuViewController alloc] initWithContentViewController:navigationController];
     } else {

@@ -29,12 +29,13 @@
 
 NSString * const kTweetCell = @"TweetCell";
 
+- (id)init {
+    self = [super initWithNibName:@"TweetsViewController" bundle:nil];
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.title = @"Home";
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onSignOut)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(onNew)];
     
     self.tableView.delegate = self;
     self.tableView.dataSource  = self;
@@ -50,7 +51,7 @@ NSString * const kTweetCell = @"TweetCell";
 }
 
 - (void)onRefresh {
-    [Tweet homeTimelineWithCompletion:^(NSMutableArray *tweets, NSError *error) {
+    [self.tweetDataSource timelineWithCompletion:^(NSMutableArray *tweets, NSError *error) {
         if (tweets) {
             self.tweets = tweets;
             self.reachedFeedBottom = NO;
@@ -119,7 +120,7 @@ NSString * const kTweetCell = @"TweetCell";
     [tableFooterView addSubview:loadingView];
     self.tableView.tableFooterView = tableFooterView;
     
-    [Tweet homeTimelineWithMaxID:((Tweet *)self.tweets[self.tweets.count - 1]).tweetID completion:^(NSMutableArray *tweets, NSError *error) {
+    [self.tweetDataSource timelineWithMaxID:((Tweet *)self.tweets[self.tweets.count - 1]).tweetID completion:^(NSMutableArray *tweets, NSError *error) {
         if (tweets) {
             if (tweets.count > 0) {
                 [self.tweets addObjectsFromArray:tweets];
