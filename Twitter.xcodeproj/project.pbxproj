@@ -38,6 +38,8 @@
 		C8CA8D491AA3F5F200A88C19 /* UserTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CA8D481AA3F5F200A88C19 /* UserTimelineViewController.m */; };
 		C8CA8D4D1AA4060E00A88C19 /* UserHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CA8D4B1AA4060E00A88C19 /* UserHeaderViewController.m */; };
 		C8CA8D4E1AA4060E00A88C19 /* UserHeaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8CA8D4C1AA4060E00A88C19 /* UserHeaderViewController.xib */; };
+		C8CA8D521AA42E0600A88C19 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CA8D501AA42E0600A88C19 /* MenuViewController.m */; };
+		C8CA8D531AA42E0600A88C19 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8CA8D511AA42E0600A88C19 /* MenuViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +106,9 @@
 		C8CA8D4A1AA4060E00A88C19 /* UserHeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHeaderViewController.h; sourceTree = "<group>"; };
 		C8CA8D4B1AA4060E00A88C19 /* UserHeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHeaderViewController.m; sourceTree = "<group>"; };
 		C8CA8D4C1AA4060E00A88C19 /* UserHeaderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserHeaderViewController.xib; sourceTree = "<group>"; };
+		C8CA8D4F1AA42E0600A88C19 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		C8CA8D501AA42E0600A88C19 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		C8CA8D511AA42E0600A88C19 /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +234,9 @@
 				C8CA8D4A1AA4060E00A88C19 /* UserHeaderViewController.h */,
 				C8CA8D4B1AA4060E00A88C19 /* UserHeaderViewController.m */,
 				C8CA8D4C1AA4060E00A88C19 /* UserHeaderViewController.xib */,
+				C8CA8D4F1AA42E0600A88C19 /* MenuViewController.h */,
+				C8CA8D501AA42E0600A88C19 /* MenuViewController.m */,
+				C8CA8D511AA42E0600A88C19 /* MenuViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -356,6 +364,7 @@
 			files = (
 				C83DF5A81A99A2BD00C98592 /* TweetsViewController.xib in Resources */,
 				C87B15901A9AA31D00C671D6 /* TweetViewController.xib in Resources */,
+				C8CA8D531AA42E0600A88C19 /* MenuViewController.xib in Resources */,
 				C87B158B1A99ED3300C671D6 /* ComposeViewController.xib in Resources */,
 				C87B159F1A9AB54800C671D6 /* ControlCell.xib in Resources */,
 				C8CA8D4E1AA4060E00A88C19 /* UserHeaderViewController.xib in Resources */,
@@ -417,6 +426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C83DF5A01A996F0100C98592 /* User.m in Sources */,
+				C8CA8D521AA42E0600A88C19 /* MenuViewController.m in Sources */,
 				C87C62C41AA3B26900FDC90B /* HamburgerMenuViewController.m in Sources */,
 				C814BC9F1AA3E6FA008A3C4F /* HomeTimelineViewController.m in Sources */,
 				C83DF59C1A99661300C98592 /* TwitterClient.m in Sources */,

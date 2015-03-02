@@ -52,6 +52,7 @@ const CGFloat kMenuWidth = 260.0;
     
     self.menuRevealed = NO;
     [self.view bringSubviewToFront:self.contentView];
+    [self addShadowToView:self.contentView];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -109,6 +110,15 @@ const CGFloat kMenuWidth = 260.0;
             [self hideMenu];
         }
     }
+}
+
+-(void)addShadowToView:(UIView*)aView {
+    aView.clipsToBounds = NO;
+    aView.layer.shadowPath = [UIBezierPath bezierPathWithRect:aView.bounds].CGPath;
+    aView.layer.shadowRadius = 10;
+    aView.layer.shadowOpacity = 0.75;
+    aView.layer.shadowOffset = CGSizeMake(0., 0.);
+    aView.layer.shadowColor = [UIColor blackColor].CGColor;
 }
 
 /*
