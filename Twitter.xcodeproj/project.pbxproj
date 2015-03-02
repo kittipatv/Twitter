@@ -35,6 +35,7 @@
 		C87B159F1A9AB54800C671D6 /* ControlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C87B159D1A9AB54800C671D6 /* ControlCell.xib */; };
 		C87C62C41AA3B26900FDC90B /* HamburgerMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87C62C21AA3B26900FDC90B /* HamburgerMenuViewController.m */; };
 		C87C62C51AA3B26900FDC90B /* HamburgerMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C87C62C31AA3B26900FDC90B /* HamburgerMenuViewController.xib */; };
+		C8CA8D491AA3F5F200A88C19 /* UserTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CA8D481AA3F5F200A88C19 /* UserTimelineViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,8 @@
 		C87C62C11AA3B26900FDC90B /* HamburgerMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HamburgerMenuViewController.h; sourceTree = "<group>"; };
 		C87C62C21AA3B26900FDC90B /* HamburgerMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HamburgerMenuViewController.m; sourceTree = "<group>"; };
 		C87C62C31AA3B26900FDC90B /* HamburgerMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HamburgerMenuViewController.xib; sourceTree = "<group>"; };
+		C8CA8D471AA3F5F200A88C19 /* UserTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTimelineViewController.h; sourceTree = "<group>"; };
+		C8CA8D481AA3F5F200A88C19 /* UserTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTimelineViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +219,8 @@
 				C87C62C31AA3B26900FDC90B /* HamburgerMenuViewController.xib */,
 				C814BC9D1AA3E6FA008A3C4F /* HomeTimelineViewController.h */,
 				C814BC9E1AA3E6FA008A3C4F /* HomeTimelineViewController.m */,
+				C8CA8D471AA3F5F200A88C19 /* UserTimelineViewController.h */,
+				C8CA8D481AA3F5F200A88C19 /* UserTimelineViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -414,6 +419,7 @@
 				C87B159E1A9AB54800C671D6 /* ControlCell.m in Sources */,
 				C83DF5701A99629300C98592 /* main.m in Sources */,
 				C87B15991A9AB17A00C671D6 /* CounterCell.m in Sources */,
+				C8CA8D491AA3F5F200A88C19 /* UserTimelineViewController.m in Sources */,
 				C83DF5971A99651500C98592 /* LoginViewController.m in Sources */,
 				C83DF5A71A99A2BD00C98592 /* TweetsViewController.m in Sources */,
 				C83DF5AD1A99AA8C00C98592 /* TweetCell.m in Sources */,

@@ -27,6 +27,7 @@ NSString * const UserDidLogoutNotification = @"UserDidLogoutNotification";
     if (self) {
         self.dictionary = dictionary;
         
+        self.userID = [dictionary[@"id"] integerValue];
         self.name = dictionary[@"name"];
         self.screenName = dictionary[@"screen_name"];
         NSString *profileImageURL = [dictionary[@"default_profile_image"] boolValue] ? @"http://a0.twimg.com/sticky/default_profile_images/default_profile_6_normal.png" : dictionary[@"profile_image_url"];

@@ -89,6 +89,9 @@
 }
 
 - (void)awakeFromNib {
+    UITapGestureRecognizer *photoTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onPhotoTap)];
+    [self.profileImage addGestureRecognizer:photoTapGesture];
+    self.profileImage.userInteractionEnabled = YES;
 }
 
 - (IBAction)onReply:(id)sender {
@@ -127,6 +130,13 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)onPhotoTap {
+    NSLog(@"onPhotoTap");
+    if ([self.delegate respondsToSelector:@selector(photoTabbedInTweetCell:)]) {
+        [self.delegate photoTabbedInTweetCell:self];
+    }
 }
 
 @end

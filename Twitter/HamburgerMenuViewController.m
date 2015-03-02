@@ -38,7 +38,6 @@ const CGFloat kMenuWidth = 260.0;
         [_contentViewController.view removeFromSuperview];
         [_contentViewController removeFromParentViewController];
     }
-    NSLog(@"setContentViewController");
     _contentViewController = contentViewController;
     [self addChildViewController:contentViewController];
 

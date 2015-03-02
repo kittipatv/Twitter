@@ -135,13 +135,8 @@
     return tweets;
 }
 
-+ (void)homeTimelineWithCompletion:(void (^)(NSMutableArray *tweets, NSError *error))completion {
-    [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:completion];
-}
-
-+ (void)homeTimelineWithMaxID:(NSInteger)maxTweetID completion:(void (^)(NSMutableArray *tweets, NSError *error))completion {
-    NSDictionary *parameters = @{@"max_id": [NSNumber numberWithInteger:maxTweetID]};
-    [[TwitterClient sharedInstance] homeTimelineWithParams:parameters completion:^(NSMutableArray *tweets, NSError *error) {
++ (void (^)(NSMutableArray *tweets, NSError *error))trimMaxTweetID:(NSInteger)maxTweetID completion:(void (^)(NSMutableArray *tweets, NSError *error))completion {
+    return ^(NSMutableArray *tweets, NSError *error) {
         if (tweets) {
             // max_id is inclusive, we don't want it
             if (tweets.count > 0 && ((Tweet *)tweets[0]).tweetID == maxTweetID) {
@@ -151,7 +146,25 @@
         } else {
             completion(nil, error);
         }
-    }];
+    };
+}
+
++ (void)homeTimelineWithCompletion:(void (^)(NSMutableArray *tweets, NSError *error))completion {
+    [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:completion];
+}
+
++ (void)homeTimelineWithMaxID:(NSInteger)maxTweetID completion:(void (^)(NSMutableArray *tweets, NSError *error))completion {
+    NSDictionary *parameters = @{@"max_id": [NSNumber numberWithInteger:maxTweetID]};
+    [[TwitterClient sharedInstance] homeTimelineWithParams:parameters completion:[Tweet trimMaxTweetID:maxTweetID completion:completion]];
+}
+
++ (void)userTimeline:(NSInteger)userID completion:(void (^)(NSMutableArray *tweets, NSError *error))completion {
+    [[TwitterClient sharedInstance] userTimeline:userID params:nil completion:completion];
+}
+
++ (void)userTimeline:(NSInteger)userID maxID:(NSInteger)maxTweetID completion:(void (^)(NSMutableArray *tweets, NSError *error))completion {
+    NSDictionary *parameters = @{@"max_id": [NSNumber numberWithInteger:maxTweetID]};
+    [[TwitterClient sharedInstance] userTimeline:userID params:parameters completion:[Tweet trimMaxTweetID:maxTweetID completion:completion]];
 }
 
 + (Tweet *)tweetWithText:(NSString *)text {

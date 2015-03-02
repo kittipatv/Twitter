@@ -47,6 +47,7 @@
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6s2-2m-fo3">
                         <rect key="frame" x="8" y="32" width="48" height="48"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="width" constant="48" id="lBA-YS-isP"/>
                             <constraint firstAttribute="height" constant="48" id="vRo-Gw-DTB"/>
@@ -164,6 +165,7 @@
                     <constraint firstItem="99g-8e-g7I" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="zvd-2P-6JX"/>
                 </constraints>
             </tableViewCellContentView>
+            <gestureRecognizers/>
             <connections>
                 <outlet property="favoriteButton" destination="7DV-fL-458" id="Qem-BN-1Jy"/>
                 <outlet property="favoriteCountLabel" destination="6D0-kC-Nrq" id="gHs-q4-o4O"/>

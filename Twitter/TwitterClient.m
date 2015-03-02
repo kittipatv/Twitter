@@ -71,12 +71,14 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
 }
 
 - (void)homeTimelineWithParams:(NSDictionary *)params completion:(void (^)(NSMutableArray *tweets, NSError *error))completion {
-    [self GET:@"1.1/statuses/home_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        // NSLog(@"tweets: %@", responseObject);
-        completion([Tweet tweetsWithArray:responseObject], nil);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        completion(nil, error);
-    }];
+    [self GET:@"1.1/statuses/home_timeline.json" parameters:params completionWithTweetsOrError:completion];
+}
+
+- (void)userTimeline:(NSInteger)userID params:(NSDictionary *)params completion:(void (^)(NSMutableArray *tweets, NSError *error))completion {
+    NSMutableDictionary *paramsWithUserID = [NSMutableDictionary dictionaryWithDictionary:params];
+    [paramsWithUserID setObject:[NSNumber numberWithInteger:userID] forKey:@"user_id"];
+    
+    [self GET:@"1.1/statuses/user_timeline.json" parameters:paramsWithUserID completionWithTweetsOrError:completion];
 }
 
 - (void)POST:(NSString *)URLString parameters:(NSDictionary *)params completionWithTweetOrError:(void (^)(Tweet *tweet, NSError *error))completion {
@@ -95,6 +97,18 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
     [self GET:URLString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (completion ) {
             completion([[Tweet alloc] initWithDictionary:responseObject], nil);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (completion) {
+            completion(nil, error);
+        }
+    }];
+}
+
+- (void)GET:(NSString *)URLString parameters:(NSDictionary *)params completionWithTweetsOrError:(void (^)(NSMutableArray *tweets, NSError *error))completion {
+    [self GET:URLString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (completion) {
+            completion([Tweet tweetsWithArray:responseObject], nil);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if (completion) {

@@ -8,12 +8,13 @@
 
 #import "TweetsViewController.h"
 
-#include "ComposeViewController.h"
+#import "ComposeViewController.h"
 #import "Tweet.h"
 #import "TweetCell.h"
 #import "TweetViewController.h"
 #import "TwitterClient.h"
 #import "User.h"
+#import "UserTimelineViewController.h"
 
 @interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate, TweetCellDelegate, TweetViewControllerDelegate>
 
@@ -155,6 +156,12 @@ NSString * const kTweetCell = @"TweetCell";
 
 - (void)tweetCell:(TweetCell *)tweetCell replyCreated:(Tweet *)tweet {
     [self insertNewTweet:tweet];
+}
+
+- (void)photoTabbedInTweetCell:(TweetCell *)tweetCell {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:tweetCell];
+    UserTimelineViewController *userTimelineViewController = [[UserTimelineViewController alloc] initWithUser:((Tweet *)self.tweets[indexPath.row]).user];
+    [self.navigationController pushViewController:userTimelineViewController animated:YES];
 }
 
 - (void)tweetViewController:(TweetViewController *)tweetViewController replyCreated:(Tweet *)tweet {

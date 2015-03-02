@@ -16,6 +16,7 @@
 
 @optional
 - (void)tweetCell:(TweetCell *)tweetCell replyCreated:(Tweet *)tweet;
+- (void)photoTabbedInTweetCell:(TweetCell *)tweetCell;
 
 @end
 
