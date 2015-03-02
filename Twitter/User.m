@@ -32,7 +32,13 @@ NSString * const UserDidLogoutNotification = @"UserDidLogoutNotification";
         self.screenName = dictionary[@"screen_name"];
         NSString *profileImageURL = [dictionary[@"default_profile_image"] boolValue] ? @"http://a0.twimg.com/sticky/default_profile_images/default_profile_6_normal.png" : dictionary[@"profile_image_url"];
         self.profileImageURL = [profileImageURL stringByReplacingOccurrencesOfString:@"_normal" withString:@"_bigger"];
+        NSString *profileBannerURL = dictionary[@"profile_banner_url"];
+        self.profileBannerURL = [profileBannerURL stringByAppendingString:@"/mobile_retina"];
         self.tagline = dictionary[@"description"];
+        
+        self.tweetCount = [dictionary[@"statuses_count"] integerValue];
+        self.followingCount = [dictionary[@"friends_count"] integerValue];
+        self.followerCount = [dictionary[@"followers_count"] integerValue];
     }
     
     return self;

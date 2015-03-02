@@ -10,8 +10,11 @@
 
 #import "Tweet.h"
 #import "User.h"
+#import "UserHeaderViewController.h"
 
 @interface UserTimelineViewController () <TweetsViewControllerDatasource>
+
+@property (nonatomic, strong) UserHeaderViewController *headerViewController;
 
 @end
 
@@ -32,6 +35,8 @@
     // Do any additional setup after loading the view.
     
     self.title = self.user.userID == [User currentUser].userID ? @"Me" : self.user.name;
+    
+    self.headerViewController = [[UserHeaderViewController alloc] initWithUser:self.user];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,6 +55,18 @@
 
 - (BOOL)shouldOpenUserTimeline:(NSInteger)userID {
     return self.user.userID != userID;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return self.headerViewController.view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section {
+    return 206;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 206;
 }
 
 /*

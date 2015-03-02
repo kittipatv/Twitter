@@ -36,6 +36,8 @@
 		C87C62C41AA3B26900FDC90B /* HamburgerMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87C62C21AA3B26900FDC90B /* HamburgerMenuViewController.m */; };
 		C87C62C51AA3B26900FDC90B /* HamburgerMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C87C62C31AA3B26900FDC90B /* HamburgerMenuViewController.xib */; };
 		C8CA8D491AA3F5F200A88C19 /* UserTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CA8D481AA3F5F200A88C19 /* UserTimelineViewController.m */; };
+		C8CA8D4D1AA4060E00A88C19 /* UserHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CA8D4B1AA4060E00A88C19 /* UserHeaderViewController.m */; };
+		C8CA8D4E1AA4060E00A88C19 /* UserHeaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8CA8D4C1AA4060E00A88C19 /* UserHeaderViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +101,9 @@
 		C87C62C31AA3B26900FDC90B /* HamburgerMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HamburgerMenuViewController.xib; sourceTree = "<group>"; };
 		C8CA8D471AA3F5F200A88C19 /* UserTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTimelineViewController.h; sourceTree = "<group>"; };
 		C8CA8D481AA3F5F200A88C19 /* UserTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTimelineViewController.m; sourceTree = "<group>"; };
+		C8CA8D4A1AA4060E00A88C19 /* UserHeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHeaderViewController.h; sourceTree = "<group>"; };
+		C8CA8D4B1AA4060E00A88C19 /* UserHeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHeaderViewController.m; sourceTree = "<group>"; };
+		C8CA8D4C1AA4060E00A88C19 /* UserHeaderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserHeaderViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +226,9 @@
 				C814BC9E1AA3E6FA008A3C4F /* HomeTimelineViewController.m */,
 				C8CA8D471AA3F5F200A88C19 /* UserTimelineViewController.h */,
 				C8CA8D481AA3F5F200A88C19 /* UserTimelineViewController.m */,
+				C8CA8D4A1AA4060E00A88C19 /* UserHeaderViewController.h */,
+				C8CA8D4B1AA4060E00A88C19 /* UserHeaderViewController.m */,
+				C8CA8D4C1AA4060E00A88C19 /* UserHeaderViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -350,6 +358,7 @@
 				C87B15901A9AA31D00C671D6 /* TweetViewController.xib in Resources */,
 				C87B158B1A99ED3300C671D6 /* ComposeViewController.xib in Resources */,
 				C87B159F1A9AB54800C671D6 /* ControlCell.xib in Resources */,
+				C8CA8D4E1AA4060E00A88C19 /* UserHeaderViewController.xib in Resources */,
 				C83DF5AE1A99AA8C00C98592 /* TweetCell.xib in Resources */,
 				C87B15951A9AA8FA00C671D6 /* BigTweetCell.xib in Resources */,
 				C87B159A1A9AB17A00C671D6 /* CounterCell.xib in Resources */,
@@ -413,6 +422,7 @@
 				C83DF59C1A99661300C98592 /* TwitterClient.m in Sources */,
 				C83DF5731A99629300C98592 /* AppDelegate.m in Sources */,
 				C87B15941A9AA8FA00C671D6 /* BigTweetCell.m in Sources */,
+				C8CA8D4D1AA4060E00A88C19 /* UserHeaderViewController.m in Sources */,
 				C87B158A1A99ED3300C671D6 /* ComposeViewController.m in Sources */,
 				C87B158F1A9AA31D00C671D6 /* TweetViewController.m in Sources */,
 				C83DF5A31A996F4F00C98592 /* Tweet.m in Sources */,
