@@ -133,7 +133,6 @@
 }
 
 - (void)onPhotoTap {
-    NSLog(@"onPhotoTap");
     if ([self.delegate respondsToSelector:@selector(photoTabbedInTweetCell:)]) {
         [self.delegate photoTabbedInTweetCell:self];
     }

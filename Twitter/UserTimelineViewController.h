@@ -12,6 +12,8 @@
 
 @interface UserTimelineViewController : TweetsViewController
 
+@property (nonatomic, strong) User *user;
+
 - (id)initWithUser:(User *)user;
 
 @end

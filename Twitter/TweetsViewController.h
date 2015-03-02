@@ -21,7 +21,7 @@
 
 - (void)onSignOut;
 - (void)onNew;
-// - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
-// - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+
+- (BOOL)shouldOpenUserTimeline:(NSInteger)userID;
 
 @end

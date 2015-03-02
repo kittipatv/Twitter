@@ -160,8 +160,18 @@ NSString * const kTweetCell = @"TweetCell";
 
 - (void)photoTabbedInTweetCell:(TweetCell *)tweetCell {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:tweetCell];
-    UserTimelineViewController *userTimelineViewController = [[UserTimelineViewController alloc] initWithUser:((Tweet *)self.tweets[indexPath.row]).user];
+    User *user = ((Tweet *)self.tweets[indexPath.row]).user;
+    
+    if (![self shouldOpenUserTimeline:user.userID]) {
+        return;
+    }
+    
+    UserTimelineViewController *userTimelineViewController = [[UserTimelineViewController alloc] initWithUser:user];
     [self.navigationController pushViewController:userTimelineViewController animated:YES];
+}
+
+- (BOOL)shouldOpenUserTimeline:(NSInteger)userID {
+    return YES;
 }
 
 - (void)tweetViewController:(TweetViewController *)tweetViewController replyCreated:(Tweet *)tweet {

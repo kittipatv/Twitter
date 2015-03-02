@@ -13,8 +13,6 @@
 
 @interface UserTimelineViewController () <TweetsViewControllerDatasource>
 
-@property (nonatomic, strong) User *user;
-
 @end
 
 @implementation UserTimelineViewController
@@ -33,7 +31,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = self.user == [User currentUser] ? @"Me" : self.user.name;
+    self.title = self.user.userID == [User currentUser].userID ? @"Me" : self.user.name;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,6 +46,10 @@
 
 - (void)timelineWithMaxID:(NSInteger)maxTweetID completion:(void (^)(NSMutableArray *, NSError *))completion {
     [Tweet userTimeline:self.user.userID maxID:maxTweetID completion:completion];
+}
+
+- (BOOL)shouldOpenUserTimeline:(NSInteger)userID {
+    return self.user.userID != userID;
 }
 
 /*
