@@ -11,6 +11,7 @@
 #import "HamburgerMenuViewController.h"
 #import "HomeTimelineViewController.h"
 #import "LoginViewController.h"
+#import "MenuViewController.h"
 #import "TwitterClient.h"
 #import "User.h"
 
@@ -31,8 +32,9 @@
     if (user) {
         NSLog(@"Welcome, %@", user.name);
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[HomeTimelineViewController alloc] init]];
+        MenuViewController *menuViewController = [[MenuViewController alloc] init];
         
-        self.window.rootViewController = [[HamburgerMenuViewController alloc] initWithContentViewController:navigationController];
+        self.window.rootViewController = [[HamburgerMenuViewController alloc] initWithContentViewController:navigationController menuViewController:menuViewController];
     } else {
         NSLog(@"not logged in");
         self.window.rootViewController = [[LoginViewController alloc] init];

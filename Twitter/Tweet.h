@@ -35,6 +35,8 @@
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array;
 + (void)homeTimelineWithCompletion:(void (^)(NSMutableArray *tweets, NSError *error))completion;
 + (void)homeTimelineWithMaxID:(NSInteger)maxTweetID completion:(void (^)(NSMutableArray *tweets, NSError *error))completion;
++ (void)mentionsTimelineWithCompletion:(void (^)(NSMutableArray *tweets, NSError *error))completion;
++ (void)mentionsTimelineWithMaxID:(NSInteger)maxTweetID completion:(void (^)(NSMutableArray *tweets, NSError *error))completion;
 + (void)userTimeline:(NSInteger)userID completion:(void (^)(NSMutableArray *tweets, NSError *error))completion;
 + (void)userTimeline:(NSInteger)userID maxID:(NSInteger)maxTweetID completion:(void (^)(NSMutableArray *tweets, NSError *error))completion;
 + (Tweet *)tweetWithText:(NSString *)text;

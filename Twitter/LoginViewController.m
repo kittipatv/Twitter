@@ -9,7 +9,9 @@
 #import "LoginViewController.h"
 
 #import "AppDelegate.h"
-#import "TweetsViewController.h"
+#import "HamburgerMenuViewController.h"
+#import "HomeTimelineViewController.h"
+#import "MenuViewController.h"
 #import "TwitterClient.h"
 
 @interface LoginViewController ()
@@ -32,10 +34,14 @@
     [[TwitterClient sharedInstance] loginWithCompletion:^(User *user, NSError *error) {
         if (user) {
             NSLog(@"welcome, %@", user.name);
-            UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] init]];
+            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[HomeTimelineViewController alloc] init]];
+            MenuViewController *menuViewController = [[MenuViewController alloc] init];
+            
+            HamburgerMenuViewController *hamburgerViewController = [[HamburgerMenuViewController alloc] initWithContentViewController:navigationController menuViewController:menuViewController];
+            
             AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
             [UIView transitionWithView:appDelegate.window duration:0.3 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
-                appDelegate.window.rootViewController = nvc;
+                appDelegate.window.rootViewController = hamburgerViewController;
             } completion:nil];
         } else {
             NSLog(@"no...");

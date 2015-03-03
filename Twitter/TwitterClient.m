@@ -74,6 +74,10 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
     [self GET:@"1.1/statuses/home_timeline.json" parameters:params completionWithTweetsOrError:completion];
 }
 
+- (void)mentionsTimelineWithParams:(NSDictionary *)params completion:(void (^)(NSMutableArray *tweets, NSError *error))completion {
+    [self GET:@"1.1/statuses/mentions_timeline.json" parameters:params completionWithTweetsOrError:completion];
+}
+
 - (void)userTimeline:(NSInteger)userID params:(NSDictionary *)params completion:(void (^)(NSMutableArray *tweets, NSError *error))completion {
     NSMutableDictionary *paramsWithUserID = [NSMutableDictionary dictionaryWithDictionary:params];
     [paramsWithUserID setObject:[NSNumber numberWithInteger:userID] forKey:@"user_id"];

@@ -13,6 +13,14 @@
 @property (nonatomic, strong) UIViewController *contentViewController;
 @property (nonatomic, strong) UIViewController *menuViewController;
 
-- (id)initWithContentViewController:(UIViewController *)contentViewController;
+- (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController;
+
+- (void)hideMenu;
+
+@end
+
+@interface UIViewController(UIViewControllerHamburgerMenu)
+
+@property (nonatomic, weak, readonly) HamburgerMenuViewController *hamburgerMenuViewController;
 
 @end

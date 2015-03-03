@@ -23,10 +23,11 @@
 
 const CGFloat kMenuWidth = 260.0;
 
-- (id)initWithContentViewController:(UIViewController *)contentViewController {
+- (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController {
     self = [super init];
     if (self) {
         self.contentViewController = contentViewController;
+        self.menuViewController = menuViewController;
     }
     
     return self;
@@ -45,6 +46,22 @@ const CGFloat kMenuWidth = 260.0;
     self.contentView.frame = self.view.bounds;
     [self.contentView insertSubview:contentViewController.view atIndex:0];
     [contentViewController didMoveToParentViewController:self];
+}
+
+- (void)setMenuViewController:(UIViewController *)menuViewController {
+    if (_menuViewController) {
+        [_menuViewController willMoveToParentViewController:nil];
+        [_menuViewController.view removeFromSuperview];
+        [_menuViewController removeFromParentViewController];
+    }
+    _menuViewController = menuViewController;
+    [self addChildViewController:menuViewController];
+    
+    menuViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    CGRect bounds = self.view.bounds;
+    self.menuView.frame = CGRectMake(0, 0, kMenuWidth, bounds.size.height);
+    [self.menuView insertSubview:menuViewController.view atIndex:0];
+    [menuViewController didMoveToParentViewController:self];
 }
 
 - (void)viewDidLoad {
@@ -73,7 +90,7 @@ const CGFloat kMenuWidth = 260.0;
 }
 
 - (void)showMenu {
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.contentView.frame = CGRectMake(kMenuWidth, 0, self.contentView.frame.size.width, self.contentView.frame.size.height);
     } completion:^(BOOL finished) {
         [self.contentView addGestureRecognizer:self.tapRecognizer];
@@ -83,7 +100,7 @@ const CGFloat kMenuWidth = 260.0;
 }
 
 - (void)hideMenu {
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.contentView.frame = CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height);
     } completion:^(BOOL finished) {
         [self.contentView removeGestureRecognizer:self.tapRecognizer];
@@ -121,6 +138,14 @@ const CGFloat kMenuWidth = 260.0;
     aView.layer.shadowColor = [UIColor blackColor].CGColor;
 }
 
+- (UINavigationController *)navigationController {
+    if ([self.contentViewController isKindOfClass:[UINavigationController class]]) {
+        return (UINavigationController *)self.contentViewController;
+    } else {
+        return [super navigationController];
+    }
+}
+
 /*
 #pragma mark - Navigation
 
@@ -130,5 +155,17 @@ const CGFloat kMenuWidth = 260.0;
     // Pass the selected object to the new view controller.
 }
 */
+
+@end
+
+@implementation UIViewController(UIViewControllerHamburgerMenu)
+
+- (HamburgerMenuViewController *)hamburgerMenuViewController {
+    if ([self isKindOfClass:[HamburgerMenuViewController class]]) {
+        return (HamburgerMenuViewController *)self;
+    } else {
+        return [[self parentViewController] hamburgerMenuViewController];
+    }
+}
 
 @end

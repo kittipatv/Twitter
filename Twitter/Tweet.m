@@ -158,6 +158,15 @@
     [[TwitterClient sharedInstance] homeTimelineWithParams:parameters completion:[Tweet trimMaxTweetID:maxTweetID completion:completion]];
 }
 
++ (void)mentionsTimelineWithCompletion:(void (^)(NSMutableArray *tweets, NSError *error))completion {
+    [[TwitterClient sharedInstance] mentionsTimelineWithParams:nil completion:completion];
+}
+
++ (void)mentionsTimelineWithMaxID:(NSInteger)maxTweetID completion:(void (^)(NSMutableArray *tweets, NSError *error))completion {
+    NSDictionary *parameters = @{@"max_id": [NSNumber numberWithInteger:maxTweetID]};
+    [[TwitterClient sharedInstance] mentionsTimelineWithParams:parameters completion:[Tweet trimMaxTweetID:maxTweetID completion:completion]];
+}
+
 + (void)userTimeline:(NSInteger)userID completion:(void (^)(NSMutableArray *tweets, NSError *error))completion {
     [[TwitterClient sharedInstance] userTimeline:userID params:nil completion:completion];
 }
