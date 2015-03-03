@@ -85,6 +85,16 @@ NSString * const kMenuItemCell = @"MenuItemCell";
     [hamburgerMenuViewController hideMenu];
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor whiteColor];
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 1;
+}
+
 /*
 #pragma mark - Navigation
 
