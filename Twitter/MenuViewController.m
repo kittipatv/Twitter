@@ -10,6 +10,7 @@
 
 #import "HamburgerMenuViewController.h"
 #import "MentionsTimelineViewController.h"
+#import "MenuHeaderViewController.h"
 #import "MenuItemCell.h"
 #import "User.h"
 #import "UserTimelineViewController.h"
@@ -17,6 +18,8 @@
 @interface MenuViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (nonatomic, strong) MenuHeaderViewController *headerViewController;
 
 @end
 
@@ -31,6 +34,13 @@ NSString * const kMenuItemCell = @"MenuItemCell";
     [self.tableView registerNib:[UINib nibWithNibName:kMenuItemCell bundle:nil] forCellReuseIdentifier:kMenuItemCell];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.headerViewController = [[MenuHeaderViewController alloc] initWithUser:[User currentUser]];
+
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onSignOut)];
+}
+
+- (void)onSignOut {
+    [User logout];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -93,6 +103,18 @@ NSString * const kMenuItemCell = @"MenuItemCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 1;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return self.headerViewController.view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section {
+    return 88;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 88;
 }
 
 /*

@@ -33,8 +33,9 @@
         NSLog(@"Welcome, %@", user.name);
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[HomeTimelineViewController alloc] init]];
         MenuViewController *menuViewController = [[MenuViewController alloc] init];
+        UINavigationController *menuNavigationController = [[UINavigationController alloc] initWithRootViewController:menuViewController];
         
-        self.window.rootViewController = [[HamburgerMenuViewController alloc] initWithContentViewController:navigationController menuViewController:menuViewController];
+        self.window.rootViewController = [[HamburgerMenuViewController alloc] initWithContentViewController:navigationController menuViewController:menuNavigationController];
     } else {
         NSLog(@"not logged in");
         self.window.rootViewController = [[LoginViewController alloc] init];

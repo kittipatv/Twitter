@@ -36,8 +36,9 @@
             NSLog(@"welcome, %@", user.name);
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[HomeTimelineViewController alloc] init]];
             MenuViewController *menuViewController = [[MenuViewController alloc] init];
+            UINavigationController *menuNavigationController = [[UINavigationController alloc] initWithRootViewController:menuViewController];
             
-            HamburgerMenuViewController *hamburgerViewController = [[HamburgerMenuViewController alloc] initWithContentViewController:navigationController menuViewController:menuViewController];
+            HamburgerMenuViewController *hamburgerViewController = [[HamburgerMenuViewController alloc] initWithContentViewController:navigationController menuViewController:menuNavigationController];
             
             AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
             [UIView transitionWithView:appDelegate.window duration:0.3 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{

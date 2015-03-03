@@ -19,7 +19,6 @@
 
 @property (nonatomic, weak) id<TweetsViewControllerDatasource> tweetDataSource;
 
-- (void)onSignOut;
 - (void)onNew;
 
 - (BOOL)shouldOpenUserTimeline:(NSInteger)userID;

@@ -64,10 +64,6 @@ NSString * const kTweetCell = @"TweetCell";
     }];
 }
 
-- (void)onSignOut {
-    [User logout];
-}
-
 - (void)onNew {
     ComposeViewController *composeVC = [[ComposeViewController alloc] init];
     composeVC.delegate = self;

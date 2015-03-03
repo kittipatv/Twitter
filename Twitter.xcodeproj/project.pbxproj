@@ -10,6 +10,8 @@
 		899520EA82BEDB3919F3578A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CB9EC9907700C45376417E5 /* libPods.a */; };
 		C814BC9F1AA3E6FA008A3C4F /* HomeTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C814BC9E1AA3E6FA008A3C4F /* HomeTimelineViewController.m */; };
 		C81F7F0B1AA5743400838DDA /* MentionsTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C81F7F0A1AA5743400838DDA /* MentionsTimelineViewController.m */; };
+		C81F7F0F1AA5800700838DDA /* MenuHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C81F7F0D1AA5800700838DDA /* MenuHeaderViewController.m */; };
+		C81F7F101AA5800700838DDA /* MenuHeaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C81F7F0E1AA5800700838DDA /* MenuHeaderViewController.xib */; };
 		C83DF5701A99629300C98592 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C83DF56F1A99629300C98592 /* main.m */; };
 		C83DF5731A99629300C98592 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C83DF5721A99629300C98592 /* AppDelegate.m */; };
 		C83DF57B1A99629300C98592 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C83DF57A1A99629300C98592 /* Images.xcassets */; };
@@ -63,6 +65,9 @@
 		C814BC9E1AA3E6FA008A3C4F /* HomeTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTimelineViewController.m; sourceTree = "<group>"; };
 		C81F7F091AA5743400838DDA /* MentionsTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MentionsTimelineViewController.h; sourceTree = "<group>"; };
 		C81F7F0A1AA5743400838DDA /* MentionsTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MentionsTimelineViewController.m; sourceTree = "<group>"; };
+		C81F7F0C1AA5800700838DDA /* MenuHeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuHeaderViewController.h; sourceTree = "<group>"; };
+		C81F7F0D1AA5800700838DDA /* MenuHeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuHeaderViewController.m; sourceTree = "<group>"; };
+		C81F7F0E1AA5800700838DDA /* MenuHeaderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuHeaderViewController.xib; sourceTree = "<group>"; };
 		C83DF56A1A99629300C98592 /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C83DF56E1A99629300C98592 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C83DF56F1A99629300C98592 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -247,6 +252,9 @@
 				C8CA8D511AA42E0600A88C19 /* MenuViewController.xib */,
 				C81F7F091AA5743400838DDA /* MentionsTimelineViewController.h */,
 				C81F7F0A1AA5743400838DDA /* MentionsTimelineViewController.m */,
+				C81F7F0C1AA5800700838DDA /* MenuHeaderViewController.h */,
+				C81F7F0D1AA5800700838DDA /* MenuHeaderViewController.m */,
+				C81F7F0E1AA5800700838DDA /* MenuHeaderViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -380,6 +388,7 @@
 				C8CA8D531AA42E0600A88C19 /* MenuViewController.xib in Resources */,
 				C87B158B1A99ED3300C671D6 /* ComposeViewController.xib in Resources */,
 				C87B159F1A9AB54800C671D6 /* ControlCell.xib in Resources */,
+				C81F7F101AA5800700838DDA /* MenuHeaderViewController.xib in Resources */,
 				C8CA8D581AA43C6C00A88C19 /* MenuItemCell.xib in Resources */,
 				C8CA8D4E1AA4060E00A88C19 /* UserHeaderViewController.xib in Resources */,
 				C83DF5AE1A99AA8C00C98592 /* TweetCell.xib in Resources */,
@@ -453,6 +462,7 @@
 				C87B158F1A9AA31D00C671D6 /* TweetViewController.m in Sources */,
 				C83DF5A31A996F4F00C98592 /* Tweet.m in Sources */,
 				C87B159E1A9AB54800C671D6 /* ControlCell.m in Sources */,
+				C81F7F0F1AA5800700838DDA /* MenuHeaderViewController.m in Sources */,
 				C83DF5701A99629300C98592 /* main.m in Sources */,
 				C87B15991A9AB17A00C671D6 /* CounterCell.m in Sources */,
 				C8CA8D491AA3F5F200A88C19 /* UserTimelineViewController.m in Sources */,

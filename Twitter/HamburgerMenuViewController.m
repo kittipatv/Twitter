@@ -42,8 +42,9 @@ const CGFloat kMenuWidth = 260.0;
     _contentViewController = contentViewController;
     [self addChildViewController:contentViewController];
 
-    contentViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    // contentViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.contentView.frame = self.view.bounds;
+    contentViewController.view.frame = self.view.bounds;
     [self.contentView insertSubview:contentViewController.view atIndex:0];
     [contentViewController didMoveToParentViewController:self];
 }
@@ -57,9 +58,9 @@ const CGFloat kMenuWidth = 260.0;
     _menuViewController = menuViewController;
     [self addChildViewController:menuViewController];
     
-    menuViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     CGRect bounds = self.view.bounds;
     self.menuView.frame = CGRectMake(0, 0, kMenuWidth, bounds.size.height);
+    menuViewController.view.frame = CGRectMake(0, 0, kMenuWidth, bounds.size.height);
     [self.menuView insertSubview:menuViewController.view atIndex:0];
     [menuViewController didMoveToParentViewController:self];
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuHeaderViewController">
+            <connections>
+                <outlet property="nameLabel" destination="Vjh-cB-fOA" id="rvM-6W-45U"/>
+                <outlet property="profileImageView" destination="0wa-8r-QzY" id="m5w-8Z-fsr"/>
+                <outlet property="taglineLabel" destination="2xJ-di-4bX" id="VaV-fG-GsK"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0wa-8r-QzY">
+                    <rect key="frame" x="8" y="8" width="72" height="72"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="72" id="R3G-kz-IgT"/>
+                        <constraint firstAttribute="height" constant="72" id="reJ-lC-pIK"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kittipat Virochsiri" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Vjh-cB-fOA">
+                    <rect key="frame" x="88" y="8" width="134.5" height="20.5"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tagline" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="2xJ-di-4bX">
+                    <rect key="frame" x="88" y="36" width="48" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Vjh-cB-fOA" firstAttribute="leading" secondItem="0wa-8r-QzY" secondAttribute="trailing" constant="8" id="2bO-4m-kz3"/>
+                <constraint firstItem="2xJ-di-4bX" firstAttribute="leading" secondItem="Vjh-cB-fOA" secondAttribute="leading" id="E86-Vl-0I8"/>
+                <constraint firstItem="0wa-8r-QzY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="KFj-J5-IgU"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Vjh-cB-fOA" secondAttribute="trailing" constant="8" id="Ms3-tk-kgk"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2xJ-di-4bX" secondAttribute="trailing" constant="8" id="bnF-We-x96"/>
+                <constraint firstItem="Vjh-cB-fOA" firstAttribute="top" secondItem="0wa-8r-QzY" secondAttribute="top" id="fr4-cA-NoG"/>
+                <constraint firstItem="0wa-8r-QzY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="hlL-5p-R3q"/>
+                <constraint firstItem="2xJ-di-4bX" firstAttribute="top" secondItem="Vjh-cB-fOA" secondAttribute="bottom" constant="8" id="j1d-db-zCA"/>
+            </constraints>
+            <point key="canvasLocation" x="387" y="272"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
